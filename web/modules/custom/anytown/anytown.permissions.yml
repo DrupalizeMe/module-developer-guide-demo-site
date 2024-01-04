@@ -1,0 +1,3 @@
+view weekly weather:
+  title: 'View weekly weather'
+  description: 'Allows the user to view the weekly weather at the market.'

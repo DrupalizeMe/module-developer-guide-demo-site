@@ -1,0 +1,5 @@
+anytown_status.node.attendance_form:
+  route_name: anytown_status.status_update
+  base_route: entity.node.canonical
+  title: Attendance
+  weight: 10

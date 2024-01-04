@@ -1,0 +1,13 @@
+# Simple link.
+anytown.weather:
+  title: Weather
+  description: Check this week's weather.
+  menu_name: main
+  # From anytown.routing.yml.
+  route_name: anytown.weather_page
+
+anytown.settings:
+  title: Anytown Settings
+  parent: system.admin_config_system
+  route_name: anytown.settings
+  weight: 10

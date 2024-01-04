@@ -1,0 +1,142 @@
+<?php
+
+/**
+ * @file
+ * File.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function anytown_help($route_name, RouteMatchInterface $route_match) {
+  // Primary help page for the module will be at "help.page.$modulename".
+  if ($route_name === 'help.page.anytown') {
+    // Example of accessing a service via a hook, where you can't perform
+    // dependency injection.
+    /** @var \Drupal\Core\Session\AccountProxyInterface $current_user */
+    $current_user = \Drupal::service('current_user');
+
+    return '<p>' . t("Hi %name, the anytown module provides code specific to the Anytown Farmer's market website. This includes the weather forecast page, block, and related settings.", ['%name' => $current_user->getDisplayName()]) . '</p>';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function anytown_theme() {
+  return [
+    'weather_page' => [
+      'variables' => [
+        'weather_intro' => '',
+        'weather_forecast' => '',
+        'short_forecast' => '',
+        'weather_closures' => '',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function anytown_form_user_register_form_alter(&$form, FormStateInterface $form_state) {
+  // Add our custom validation handler.
+  $form['#validate'][] = 'anytown_user_register_validate';
+
+  $form['terms_of_use'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Anytown Terms and Conditions of Use'),
+    '#weight' => 10,
+    // Admin users can skip the terms of use, this will let them create accounts
+    // for other people without seeing these fields.
+    '#access' => !\Drupal::currentUser()->hasPermission('administer users'),
+  ];
+
+  $form['terms_of_use']['terms_of_use_data'] = [
+    '#type' => 'markup',
+    '#markup' => '<p>By checking the box below you agree to our terms of use. Whatever that might be. ¯\_(ツ)_/¯</p>',
+    '#allowed_tags' => ['iframe'],
+  ];
+
+  $form['terms_of_use']['terms_of_use_checkbox'] = [
+    '#type' => 'checkbox',
+    '#title' => t('I agree with the terms above'),
+    '#required' => TRUE,
+  ];
+}
+
+/**
+ * Custom validation handler for the user registration form.
+ */
+function anytown_user_register_validate(&$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('name') === 'anytown') {
+    $form_state->setErrorByName('name', t('The username "anytown" is invalid. Please choose a different name.'));
+  }
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function anytown_entity_type_alter(array &$entity_types) {
+  // Add validation constraint to user entities.
+  $entity_types['user']->addConstraint('AnytownUserNameConstraint');
+}
+
+/**
+ * Implements hook_cron().
+ */
+function anytown_cron() {
+  // Get the current time.
+  $current_time = new \DateTime();
+  // Get the last time this was run.
+  $last_run_timestamp = \Drupal::state()->get('anytown.last_cron_weekly_run', 0);
+  $last_run = new \DateTime();
+  if ($last_run_timestamp) {
+    $last_run->setTimestamp($last_run_timestamp);
+  }
+
+  // If it's been more than 6 days since that last run, we're good, and if today
+  // is Monday or later, we're good.
+  $interval = $last_run->diff($current_time);
+
+  // 1==1 is so that this will execute every time cron runs for demonstration
+  // purposes.
+  if (1 == 1 || $interval->days > 6 && $current_time->format('w') >= 1) {
+    // Perform the weekly task.
+    _anytown_clear_vendor_status();
+
+    // Update the last run time.
+    \Drupal::state()->set('anytown.last_cron_weekly_run', $current_time->getTimestamp());
+  }
+}
+
+/**
+ * Reset field_vendor_attending to FALSE for all vendor nodes.
+ */
+function _anytown_clear_vendor_status() : void {
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery()
+    // Specifying an accessCheck of TRUE|FALSE is required.
+    // Return all nodes, regardless of the users access. This is safe here
+    // because we want cron (the system) to update them all.
+    ->accessCheck(FALSE)
+  // Filter by the 'vendor' bundle.
+    ->condition('type', 'vendor')
+  // Filter nodes where 'field_attending' is TRUE.
+    ->condition('field_vendor_attending', TRUE);
+
+  // Execute the query to get an array of node IDs that match the conditions.
+  $node_ids = $query->execute();
+
+  // Load the node entities.
+  $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($node_ids);
+
+  // Now you can work with the $nodes array.
+  /** @var \Drupal\node\NodeInterface $node */
+  foreach ($nodes as $node) {
+    $node->set('field_vendor_attending', FALSE);
+    $node->save();
+  }
+}

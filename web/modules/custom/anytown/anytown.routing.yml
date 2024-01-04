@@ -1,0 +1,32 @@
+anytown.weather_page:
+  # The URL path where this page will be displayed.
+  path: '/weather/{style}'
+  defaults:
+    # Title of the page used for things like <title> tag.
+    _title: 'Weather at the market'
+    # Defines which method, on which class, should be called to retrieve the
+    # content of the page.
+    _controller: '\Drupal\anytown\Controller\WeatherPage::build'
+    # Default value for {style} if it's not present.
+    style: 'short'
+  requirements:
+    # What permissions a user needs to have in order to view this page.
+    _permission: 'access content'
+
+anytown.settings:
+  path: '/admin/config/system/settings'
+  defaults:
+    _title: 'Anytown Settings'
+    # For form controllers use _form instead of _controller. This tells Drupal
+    # to use the build, validate, submit workflow for a form.
+    _form: 'Drupal\anytown\Form\SettingsForm'
+  requirements:
+    _permission: 'administer site configuration'
+
+anytown.attending:
+  path: '/attending'
+  defaults:
+    _title: 'Vendors attending this week'
+    _controller: '\Drupal\anytown\Controller\Attending::build'
+  requirements:
+    _permission: 'access content'

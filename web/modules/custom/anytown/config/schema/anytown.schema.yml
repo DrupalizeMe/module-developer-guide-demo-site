@@ -1,0 +1,15 @@
+# Schema for the configuration files of the Anytown module.
+# https://www.drupal.org/docs/drupal-apis/configuration-api/configuration-schemametadata
+anytown.settings:
+  type: config_object
+  label: 'Anytown settings'
+  mapping:
+    display_forecast:
+      type: boolean
+      label: 'Toggle forecast display on/off'
+    location:
+      type: string
+      label: 'Zip code where the market takes place'
+    weather_closures:
+      type: string
+      label: 'Weather related closures'

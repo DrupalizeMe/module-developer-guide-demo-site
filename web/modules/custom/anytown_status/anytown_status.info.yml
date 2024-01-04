@@ -1,0 +1,5 @@
+name: 'Anytown Status'
+type: module
+description: 'UI for easy vendor status updates.'
+package: Custom
+core_version_requirement: ^10

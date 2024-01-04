@@ -1,0 +1,8 @@
+.weather_page--forecast button {
+  font-size: 0.82rem;
+  margin: 1rem 0;
+}
+
+.weather_page--forecast button:hover {
+  cursor: pointer;
+}
