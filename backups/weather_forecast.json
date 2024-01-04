@@ -1,0 +1,128 @@
+{
+  "cod": "200",
+  "message": 0,
+  "cnt": 40,
+  "list": [
+    {
+      "day": "friday",
+      "main": {
+        "temp": 278.15,
+        "feels_like": 274.85,
+        "temp_min": 272.15,
+        "temp_max": 279.15,
+        "pressure": 1020,
+        "sea_level": 1020,
+        "grnd_level": 980,
+        "humidity": 80,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 600,
+          "main": "Snow",
+          "description": "light snow",
+          "icon": "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-day-snow.svg"
+        }
+      ],
+      "clouds": {
+        "all": 75
+      },
+      "wind": {
+        "speed": 3.6,
+        "deg": 320,
+        "gust": 5.7
+      },
+      "visibility": 10000,
+      "pop": 0.4,
+      "snow": {
+        "3h": 0.12
+      },
+      "sys": {
+        "pod": "d"
+      }
+    },
+    {
+      "day": "saturday",
+      "main": {
+        "temp": 281.32,
+        "feels_like": 279.15,
+        "temp_min": 271.32,
+        "temp_max": 281.32,
+        "pressure": 1012,
+        "sea_level": 1012,
+        "grnd_level": 970,
+        "humidity": 70,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-day-sunny-overcast.svg"
+        }
+      ],
+      "clouds": {
+        "all": 40
+      },
+      "wind": {
+        "speed": 4.1,
+        "deg": 290,
+        "gust": 6.7
+      },
+      "visibility": 10000,
+      "pop": 0.1,
+      "sys": {
+        "pod": "d"
+      }
+    },
+    {
+      "day": "sunday",
+      "main": {
+        "temp": 281.32,
+        "feels_like": 279.15,
+        "temp_min": 278.32,
+        "temp_max": 281.32,
+        "pressure": 1012,
+        "sea_level": 1012,
+        "grnd_level": 970,
+        "humidity": 70,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-day-sunny-overcast.svg"
+        }
+      ],
+      "clouds": {
+        "all": 40
+      },
+      "wind": {
+        "speed": 4.1,
+        "deg": 290,
+        "gust": 6.7
+      },
+      "visibility": 10000,
+      "pop": 0.1,
+      "sys": {
+        "pod": "d"
+      }
+    }
+  ],
+  "city": {
+    "id": 5037649,
+    "name": "Minneapolis",
+    "coord": {
+      "lat": 44.98,
+      "lon": -93.26
+    },
+    "country": "US",
+    "population": 429606,
+    "timezone": -18000,
+    "sunrise": 1667745567,
+    "sunset": 1667782834
+  }
+}

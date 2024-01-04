@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ruleset name="Anytown coding standards">
+
+  <!-- Combine these rulesets. -->
+  <rule ref="Drupal"/>
+  <rule ref="DrupalPractice"/>
+
+  <!-- If no paths are specified check these ones. -->
+  <file>./web/modules/custom</file>
+
+  <!-- Ignore any files in these paths. -->
+  <exclude-pattern>*/.git/*</exclude-pattern>
+  <exclude-pattern>*/config/*</exclude-pattern>
+  <exclude-pattern>*/css/*</exclude-pattern>
+  <exclude-pattern>*/js/*</exclude-pattern>
+  <exclude-pattern>*/icons/*</exclude-pattern>
+  <exclude-pattern>*/vendor/*</exclude-pattern>
+  <exclude-pattern>*/node_modules/*</exclude-pattern>
+  <exclude-pattern>*rules_export.txt</exclude-pattern>
+
+  <arg name="extensions" value="php,module,inc,install,test,profile,theme,css,info" />
+
+  <!-- For colored cli output -->
+  <arg name="colors"/>
+  <!-- To show rule names. Equivalent to "phpcs -s" -->
+  <arg value="sp"/>
+
+  <!-- Depending on your project, you may need to ignore specific rules until
+       they can be fixed one at a time. Here is an example of how to ignore a
+       specific rule. -->
+
+  <!-- Class name must be prefixed with the module name. -->
+  <!--
+  <rule ref="DrupalPractice.General.ClassName.ClassPrefix">
+    <severity>0</severity>
+  </rule>
+  -->
+
+</ruleset>
+
