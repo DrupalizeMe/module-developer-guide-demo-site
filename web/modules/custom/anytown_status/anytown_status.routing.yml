@@ -5,3 +5,9 @@ anytown_status.status_update:
     _form: 'Drupal\anytown_status\Form\StatusUpdateForm'
   requirements:
     _entity_access: 'node.update'
+  options:
+    parameters:
+      node:
+        type: entity:node
+        bundle:
+          - vendor
