@@ -43,7 +43,6 @@ This branch contains the results of going through the all the task tutorials in 
 ddev start
 ddev composer install
 ddev import-db --file=backups/d10.final.sql.gz
-ddev import-db --file=backups/d10.start-here.sql.gz
 ddev import-files --source=backups/public_files.tar.gz
 ddev drush updatedb
 ddev drush cr
