@@ -1,0 +1,139 @@
+#ddev-generated
+
+http:
+  routers:
+    
+    
+    module-developer-guide-web-80-http:
+      
+      rule: HostRegexp(`module-developer-guide.ddev.site`)
+      
+      middlewares:
+        - autodetect
+      service: "module-developer-guide-web-80-http"
+      tls: false
+      entrypoints:
+        - http-80
+    
+    
+    module-developer-guide-web-8025-http:
+      
+      rule: HostRegexp(`module-developer-guide.ddev.site`)
+      
+      middlewares:
+        - autodetect
+      service: "module-developer-guide-web-8025-http"
+      tls: false
+      entrypoints:
+        - http-8025
+    
+    
+    
+    
+    module-developer-guide-selenium-chrome-7900-http:
+      
+      rule: HostRegexp(`module-developer-guide.ddev.site`)
+      
+      middlewares:
+        - autodetect
+      service: "module-developer-guide-selenium-chrome-7900-http"
+      tls: false
+      entrypoints:
+        - http-7910
+    
+    
+    
+    
+    
+    module-developer-guide-web-80-https:
+      
+      rule: HostRegexp(`module-developer-guide.ddev.site`)
+      
+      middlewares:
+        - autodetect
+      service: "module-developer-guide-web-80-https"
+      
+      tls: true
+      
+      entrypoints:
+        - http-443
+    
+    
+    module-developer-guide-web-8025-https:
+      
+      rule: HostRegexp(`module-developer-guide.ddev.site`)
+      
+      middlewares:
+        - autodetect
+      service: "module-developer-guide-web-8025-https"
+      
+      tls: true
+      
+      entrypoints:
+        - http-8026
+    
+    
+    
+    module-developer-guide-selenium-chrome-7900-https:
+      
+      rule: HostRegexp(`module-developer-guide.ddev.site`)
+      
+      middlewares:
+        - autodetect
+      service: "module-developer-guide-selenium-chrome-7900-https"
+      
+      tls: true
+      
+      entrypoints:
+        - http-7900
+    
+    
+
+  # autodetect won't be needed in Traefik 3 https://github.com/traefik/traefik/pull/9546
+  middlewares:
+    autodetect:
+      contentType:
+        autoDetect: false
+
+  services:
+    
+    module-developer-guide-web-80-http:
+      loadbalancer:
+        servers:
+          - url: http://ddev-module-developer-guide-web:80
+    
+    module-developer-guide-web-8025-http:
+      loadbalancer:
+        servers:
+          - url: http://ddev-module-developer-guide-web:8025
+    
+    module-developer-guide-web-80-https:
+    
+      loadbalancer:
+        servers:
+          - url: http://ddev-module-developer-guide-web:80
+    
+    module-developer-guide-web-8025-https:
+    
+      loadbalancer:
+        servers:
+          - url: http://ddev-module-developer-guide-web:8025
+    
+    module-developer-guide-selenium-chrome-7900-http:
+      loadbalancer:
+        servers:
+          - url: http://ddev-module-developer-guide-selenium-chrome:7900
+    
+    module-developer-guide-selenium-chrome-7900-https:
+    
+      loadbalancer:
+        servers:
+          - url: http://ddev-module-developer-guide-selenium-chrome:7900
+    
+
+
+tls:
+  certificates:
+    - certFile: /mnt/ddev-global-cache/traefik/certs/module-developer-guide.crt
+      keyFile: /mnt/ddev-global-cache/traefik/certs/module-developer-guide.key
+
