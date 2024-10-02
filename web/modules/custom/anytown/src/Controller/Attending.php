@@ -73,15 +73,22 @@ class Attending extends ControllerBase {
 
       // Alternatively, we could render teasers for all vendors at once using
       // $vendor_teasers = $view_builder->viewMultiple($nodes, 'teaser');.
+
+      $build = [
+        'vendor_list' => [
+          '#theme' => 'item_list',
+          '#items' => $vendor_list,
+        ],
+        'vendor_teasers' => $vendor_teasers,
+      ];
+    }
+    else {
+      $build = [
+        '#markup' => $this->t('No vendors are currently attending this week.'),
+      ];
     }
 
-    return [
-      'vendor_list' => [
-        '#theme' => 'item_list',
-        '#items' => $vendor_list,
-      ],
-      'vendor_teasers' => $vendor_teasers,
-    ];
+    return $build;
   }
 
 }
