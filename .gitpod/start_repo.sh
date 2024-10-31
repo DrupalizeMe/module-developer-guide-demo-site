@@ -17,7 +17,7 @@ ddev start -y
 # Import artifacts.
 if [[ ! -f ".site-data-loaded.txt" ]]; then
   echo "Importing backups. Only done on intial load."
-  ddev import-db --file=backups/d10.start-here.sql.gz
+  ddev import-db --file=backups/d11.start-here.sql.gz
   echo "Database backup imported from backups/d10.start-here.sql.gz"
   ddev import-files --source=backups/public_files.tar.gz
   echo "User files backup imported from backups/public_files.tar.gz"
