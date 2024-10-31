@@ -1,6 +1,6 @@
 # Drupalize.Me Module Developer Guide Development Environment
 
-This repository is intended to be used as a starting point for following along with the Drupalize.Me [Drupal Module Developer Guide](https://drupalize.me/guide/drupal-module-developer-guide). It contains the DDEV based Drupal 10 local development environment used in the Set up Your Development Environment tutorial.
+This repository is intended to be used as a starting point for following along with the Drupalize.Me [Drupal Module Developer Guide](https://drupalize.me/guide/drupal-module-developer-guide). It contains the DDEV based Drupal 11 local development environment used in the Set up Your Development Environment tutorial.
 
 It is possible to use any development environment of your choice to follow along with the guide. The primary things this repository contains are:
 
@@ -22,7 +22,7 @@ Or, to run this locally, clone the repo and then run the following commands:
 ```bash
 ddev start
 ddev composer install
-ddev import-db --file=backups/d10.start-here.sql.gz
+ddev import-db --file=backups/d11.start-here.sql.gz
 ddev import-files --source=backups/public_files.tar.gz
 ddev drush updatedb
 ddev drush cr
@@ -42,7 +42,7 @@ This branch contains the results of going through the all the task tutorials in 
 ```bash
 ddev start
 ddev composer install
-ddev import-db --file=backups/d10.final.sql.gz
+ddev import-db --file=backups/d11.final.sql.gz
 ddev import-files --source=backups/public_files.tar.gz
 ddev drush updatedb
 ddev drush cr
