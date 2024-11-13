@@ -1,4 +1,4 @@
-name: module-developer-guide-site
+name: module-developer-guide-demo-site
 type: drupal10
 docroot: web
 php_version: "8.3"
